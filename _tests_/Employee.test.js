@@ -1,7 +1,10 @@
 const Employee = require("../lib/employee");
 
 describe("Employee", () => {
-  const employee1 = new Employee("Dakota", 1, "something@yahoo.com");
+  const employee1 = new Employee();
+  employee1.name = "Dakota";
+  employee1.id = 1;
+  employee1.email = "something@yahoo.com";
   test("employee", () => {
     expect(employee1.getName()).toEqual("Dakota");
     expect(employee1.getId()).toEqual(1);
