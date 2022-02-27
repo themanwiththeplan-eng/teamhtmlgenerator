@@ -7,6 +7,7 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
 
+firstPrompt();
 let employees = [];
 
 function engineerQ() {
@@ -36,6 +37,9 @@ function engineerQ() {
     .then((answer) => {
       console.log(answer);
       employees.push(answer);
+    })
+    .then(() => {
+      promptAgain();
     });
 }
 function internQ() {
@@ -65,6 +69,9 @@ function internQ() {
     .then((answer) => {
       console.log(answer);
       employees.push(answer);
+    })
+    .then(() => {
+      promptAgain();
     });
 }
 function managerQ() {
@@ -94,30 +101,53 @@ function managerQ() {
     .then((answer) => {
       console.log(answer);
       employees.push(answer);
+    })
+    .then(() => {
+      promptAgain();
+    });
+}
+function firstPrompt() {
+  inquirer
+    .prompt([
+      {
+        name: "role",
+        message: "What is the role in the company?",
+        type: "list",
+        choices: ["Engineer", "Intern", "Manager"],
+      },
+    ])
+    .then((answer) => {
+      let ans = answer;
+      console.log(ans);
+
+      if (Object.values(ans) == "Engineer") {
+        engineerQ();
+      } else if (Object.values(ans) == "Intern") {
+        internQ();
+      } else if (Object.values(ans) == "Manager") {
+        managerQ();
+      }
     });
 }
 
-inquirer
-  .prompt([
-    {
-      name: "role",
-      message: "What is the role in the company?",
-      type: "list",
-      choices: ["Engineer", "Intern", "Manager"],
-    },
-  ])
-  .then((answer) => {
-    let ans = answer;
-    console.log(ans);
-
-    if (Object.values(ans) == "Engineer") {
-      engineerQ();
-    } else if (Object.values(ans) == "Intern") {
-      internQ();
-    } else if (Object.values(ans) == "Manager") {
-      managerQ();
-    }
-  });
+function promptAgain() {
+  inquirer
+    .prompt([
+      {
+        name: "firstPrompt",
+        message: "Would you like to add another team member?",
+        type: "list",
+        choices: ["Yes", "No"],
+      },
+    ])
+    .then((answer) => {
+      if (Object.values(answer) == "Yes") {
+        firstPrompt();
+      } else {
+        return;
+      }
+    });
+}
 
 function makeServer() {
   http
