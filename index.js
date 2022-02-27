@@ -35,6 +35,65 @@ function engineerQ() {
     ])
     .then((answer) => {
       console.log(answer);
+      employees.push(answer);
+    });
+}
+function internQ() {
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        message: "What is your name?",
+        type: "input",
+      },
+      {
+        name: "id",
+        message: "What is the id of the employee?",
+        type: "number",
+      },
+      {
+        name: "email",
+        message: "What is the employees email?",
+        type: "input",
+      },
+      {
+        name: "school",
+        message: "What is their school?",
+        type: "input",
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      employees.push(answer);
+    });
+}
+function managerQ() {
+  inquirer
+    .prompt([
+      {
+        name: "name",
+        message: "What is your name?",
+        type: "input",
+      },
+      {
+        name: "id",
+        message: "What is the id of the employee?",
+        type: "number",
+      },
+      {
+        name: "email",
+        message: "What is the employees email?",
+        type: "input",
+      },
+      {
+        name: "office number",
+        message: "What is their office number?",
+        type: "number",
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      employees.push(answer);
     });
 }
 
@@ -53,6 +112,10 @@ inquirer
 
     if (Object.values(ans) == "Engineer") {
       engineerQ();
+    } else if (Object.values(ans) == "Intern") {
+      internQ();
+    } else if (Object.values(ans) == "Manager") {
+      managerQ();
     }
   });
 
