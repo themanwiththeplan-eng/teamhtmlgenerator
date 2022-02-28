@@ -171,7 +171,7 @@ function promptAgain() {
     <h5 class="card-title">Name: ${employees[i].name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Role: ${employees[i].role}</h6>
     <p class="card-text" ID: ${employees[i].id}></p>
-    <a href="mailto:${employees[i].email}" class="card-link">Email: ${employees[i].email}</a>`;
+    <a href="mailto:${employees[i].email}" class="card-link">Email: ${employees[i].email}</a>\n`;
 
           if (employees[i].officeNumber) {
             cards += `<p class="card-text" Office Number:${employees[i].officeNumber}></p>`;
