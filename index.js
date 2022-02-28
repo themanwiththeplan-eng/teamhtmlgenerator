@@ -183,6 +183,10 @@ function promptAgain() {
           cards += `</div>
             </div>`;
         }
+
+        if (!fs.existsSync("./dist/styles.css")) {
+          fs.writeFileSync(`./dist/styles.css`, ``);
+        }
         fs.writeFileSync(
           "./dist/index.html",
           `<!DOCTYPE html>
