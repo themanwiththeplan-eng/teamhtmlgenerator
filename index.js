@@ -164,23 +164,49 @@ function promptAgain() {
       if (Object.values(answer) == "Yes") {
         firstPrompt();
       } else {
+        cards = "";
         for (let i = 0; i < employees.length; i++) {
-          console.log(employees[i]);
+          cards += `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Name: ${employees[i].name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${employees[i].role}</h6>
+    <p class="card-text" ID: ${employees[i].id}></p>
+    <a href="mailto:${employees[i].email}" class="card-link">Email: ${employees[i].email}</a>`;
+
+          if (employees[i].officeNumber) {
+            cards += `<p class="card-text" Office Number:${employees[i].officeNumber}></p>`;
+          } else if (employees[i].github) {
+            cards += `<a href = "${employees[i].github}" target = _blank class = "card-link">Github: ${employees[i].github}</a> `;
+          } else if (employees[i].school) {
+            cards += `<p class="card-text"School: ${employees[i].school}></p>`;
+          }
+          cards += `</div>
+            </div>`;
         }
+        fs.writeFileSync(
+          "./dist/index.html",
+          `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header><h1> Employee Roster </h1></header>
+    <div class="app">
+    ${cards}
+</div>
+    
+</body>
+</html>`
+        );
       }
     });
 }
-
-function makeServer() {
-  http
-    .createServer(function (req, res) {
-      res.write("<html><head></head><body>");
-      res.write();
-      res.end("</body></html>");
-    })
-    .listen(1337);
-}
-
-//makeServer();
-
-//open("http://localhost:1337", { app: "firefox" });
