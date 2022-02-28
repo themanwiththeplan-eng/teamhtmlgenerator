@@ -170,23 +170,57 @@ function promptAgain() {
   <div class="card-body">
     <h5 class="card-title">Name: ${employees[i].name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Role: ${employees[i].role}</h6>
-    <p class="card-text" ID: ${employees[i].id}></p>
+    <p class="card-text" >ID: ${employees[i].id}</p>
     <a href="mailto:${employees[i].email}" class="card-link">Email: ${employees[i].email}</a>\n`;
 
           if (employees[i].officeNumber) {
-            cards += `<p class="card-text" Office Number:${employees[i].officeNumber}></p>`;
+            cards += `<p class="card-text">Office Number:${employees[i].officeNumber}</p>`;
           } else if (employees[i].github) {
             cards += `<a href = "${employees[i].github}" target = _blank class = "card-link">Github: ${employees[i].github}</a> `;
           } else if (employees[i].school) {
-            cards += `<p class="card-text"School: ${employees[i].school}></p>`;
+            cards += `<p class="card-text">School: ${employees[i].school}</p>`;
           }
           cards += `</div>
             </div>`;
         }
 
-        if (!fs.existsSync("./dist/styles.css")) {
-          fs.writeFileSync(`./dist/styles.css`, ``);
+        
+          fs.writeFileSync(`./dist/styles.css`, `.app{
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 50px;
+            
+        
         }
+        header{
+            text-align: center;
+            background-color: aqua;
+            height: 80px;
+        }
+        .card{
+            background-color: aquamarine;
+            align-items: center;
+            width: 200px;
+            height: 300px;
+            justify-content: center;
+            text-align: center;
+        }
+        .card-title{
+            text-align: center;
+        }
+        .card-subtitle{
+            text-align: center;
+        }
+        .card-text{
+            text-align: center;
+            margin-top: 10px;
+        }
+        .card-link{
+            text-align: center;
+            display: block;
+        }
+        `);
+        
         fs.writeFileSync(
           "./dist/index.html",
           `<!DOCTYPE html>
