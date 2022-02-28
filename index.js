@@ -9,7 +9,6 @@ const Manager = require("./lib/manager");
 
 firstPrompt();
 let employees = [];
-
 function engineerQ() {
   inquirer
     .prompt([
@@ -29,14 +28,21 @@ function engineerQ() {
         type: "input",
       },
       {
-        name: "Github",
+        name: "github",
         message: "What is their github?",
         type: "input",
       },
     ])
     .then((answer) => {
-      console.log(answer);
-      employees.push(answer);
+      // console.log(answer);
+      let engineer = new Engineer();
+      engineer.name = answer.name;
+      engineer.id = answer.id;
+      engineer.email = answer.email;
+      engineer.github = answer.github;
+      engineer.role = engineer.getRole();
+      employees.push(engineer);
+      //  console.log(employees);
     })
     .then(() => {
       promptAgain();
@@ -67,8 +73,15 @@ function internQ() {
       },
     ])
     .then((answer) => {
-      console.log(answer);
-      employees.push(answer);
+      // console.log(answer);
+      let intern = new Intern();
+      intern.name = answer.name;
+      intern.id = answer.id;
+      intern.email = answer.email;
+      intern.school = answer.school;
+      intern.role = intern.getRole();
+      employees.push(intern);
+      // console.log(employees);
     })
     .then(() => {
       promptAgain();
@@ -93,14 +106,21 @@ function managerQ() {
         type: "input",
       },
       {
-        name: "office number",
+        name: "officeNumber",
         message: "What is their office number?",
         type: "number",
       },
     ])
     .then((answer) => {
-      console.log(answer);
-      employees.push(answer);
+      // console.log(answer);
+      let manager = new Manager();
+      manager.name = answer.name;
+      manager.id = answer.id;
+      manager.email = answer.email;
+      manager.officeNumber = answer.officeNumber;
+      manager.role = manager.getRole();
+      employees.push(manager);
+      //console.log(employees);
     })
     .then(() => {
       promptAgain();
@@ -144,7 +164,9 @@ function promptAgain() {
       if (Object.values(answer) == "Yes") {
         firstPrompt();
       } else {
-        return;
+        for (let i = 0; i < employees.length; i++) {
+          console.log(employees[i]);
+        }
       }
     });
 }
