@@ -10,7 +10,7 @@ This application is to be used by managers and engineers alike that would like t
 
 ## Link to Video for PoC
 
-![This video shows exactly how to use the application](https://drive.google.com/file/d/1bnJtguC6KP-yPzhaKEaytdXbSARSPkdJ/view)
+[This video shows exactly how to use the application](https://drive.google.com/file/d/1bnJtguC6KP-yPzhaKEaytdXbSARSPkdJ/view)
 
 ---
 
